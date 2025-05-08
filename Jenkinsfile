@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repository') {
+        stage('Checkout') {
             steps {
-                git 'https://github.com/Yathishnagaraj/myapp.git'
+                checkout scm
             }
         }
 
@@ -19,8 +19,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh 'docker run -d -p 5000:5000 --name myapp-container myapp-image'
-'
+                    sh 'docker run -d -p 5000:5000 myapp-image'
                 }
             }
         }
